@@ -1,0 +1,33 @@
+<h1>Cart details</h1>
+<h3>Items in the cart : {{itemCount}}</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="row">
+      <div *ngFor="let menuItem of items;index as menuId">
+        <div class="card" style="width: 18rem;">
+          <img src="{{menuItem.image}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{menuItem.name}}</h5>
+            <p class="card-text">{{menuItem.description}}</p>
+            <p class="card-text">{{menuItem.price| currency}}</p>
+            <button class="btn btn-primary" style="margin-right: 10px;"
+                  routerLink="/itemDetails/{{menuItem.name}}">Details</button>
+            <button class="btn btn-success" (click)="removeItem(menuItem)">Remove</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div *ngFor="let menuItem of items;index as menuId">
+        <div class="card" style="width: 18rem;">
+          <h5 class="card-title">{{menuItem.name}}</h5>
+          <p class="card-text">{{menuItem.price| currency}}</p>
+        </div>
+      </div>
+      <p class="card-text">Total amount : {{totalAmount | currency}}</p>
+    </div>
+    </div>
+  </div>
+
