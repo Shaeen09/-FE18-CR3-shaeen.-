@@ -11,6 +11,7 @@ import { FormBuilder } from '@angular/forms';
 export class CartComponent implements OnInit {
   items: IMenu[] = [];
   totalAmount : number = 0;
+  totaldiscount :number = 0;
   checkoutForm = this.fb.group({
     name: '',
     address: '',
@@ -21,6 +22,7 @@ itemCount: any;
     window.alert('Your order has been cleared');
     this.items=this.cartService.clearCart();
     this.totalAmount = 0;
+    this.totaldiscount = 0;
   }
   onSubmit() {
     console.warn('Your order has been submitted',
@@ -33,6 +35,9 @@ itemCount: any;
     this.items.forEach(i => this.totalAmount  += i.price);
     console.log('cart loaded ' + this.items.length + ' Price ' + this.totalAmount);
     this.itemCount = this.cartService.getItemsCountFromCart();
+    if (this.totalAmount> 40){
+this.totaldiscount = this.totalAmount*0.85;
+    }
   }
   removeItem(removedItem: IMenu) {
     this.totalAmount = 0;

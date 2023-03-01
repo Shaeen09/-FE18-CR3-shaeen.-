@@ -3,5 +3,5 @@ export interface IMenu {
   image:string,
   description:string,
   price:number,
-  availability:string
+  availability:boolean,
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap , Params} from '@angular/router';
 import { CartService } from '../cart.service';
 import { IMenu } from '../Imenu';
 import { menu} from '../menu-list/menu';
@@ -12,6 +12,8 @@ import { menu} from '../menu-list/menu';
 export class MenuItemDetailsComponent {
   itemCount: any = 0;
 message: any;
+menu:IMenu={} as IMenu;
+id:number = 0;
   constructor(private route: ActivatedRoute, private cartService: CartService) { }
 
   addToCart(orderedItem: any) {
@@ -23,10 +25,10 @@ message: any;
   currentItem: IMenu[] | undefined;
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.itemName = this.route.snapshot.params['name'];
-      this.currentItem = menu.filter(m => m.name == this.itemName);
-      this.itemCount = this.cartService.getItems().length;
-    });
+this.route.params.subscribe((params: Params) =>{
+  this.id = +params['id'];
+  this.menu = menu[this.id];
+});
+
   }
 }

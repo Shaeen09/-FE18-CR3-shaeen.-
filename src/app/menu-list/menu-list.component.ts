@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { masterMenu } from './menu';
+import { menu } from './menu';
 import { CartService } from '../cart.service';
 import { IMenu } from '../Imenu';
 
@@ -17,11 +17,11 @@ export class MenuListComponent implements OnInit {
     this.itemCount = this.cartService.getItems().length;
     this.message =  orderedItem.name + ' has been added to the cart!';
   }
-  menu: any[] = masterMenu; // = {} as IMenus;
+  menu: any[] = menu; // = {} as IMenus;
   id: number = 0;
   constructor(private route: ActivatedRoute, private cartService: CartService) { }
   ngOnInit(): void {
-    this.menu = masterMenu;
+    this.menu = menu;
     this.route.params.subscribe((params: Params) => {
       this.id = +params['menuId'];
     this.itemCount = this.cartService.getItems().length;
